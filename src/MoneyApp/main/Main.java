@@ -1,5 +1,7 @@
 package MoneyApp.main;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 import MoneyApp.menu.List;
@@ -70,6 +72,14 @@ public class Main {
 				break;
 			case 0:
 				System.out.println("終了しました！");
+
+				//				GitのPersonal Access Token の有効期限の残り日数を表示している。
+				System.out.println();
+				LocalDate today = LocalDate.now();// 今日の日付
+				LocalDate deadline = LocalDate.of(2026, 11, 6);// 有効期限
+				long days = ChronoUnit.DAYS.between(today, deadline);// 今日から提出期限まで何日あるか
+
+				System.out.println("GitのPersonal Access Tokenの有効期限まであと " + days + " 日です。");
 				return;
 			default:
 				System.out.println("エラー");
