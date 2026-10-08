@@ -11,6 +11,7 @@ import MoneyApp.menu.Setting;
 public class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
+
 		while (true) {
 			int menu = Menu.showMain();
 			switch (menu) {
@@ -80,9 +81,10 @@ public class Main {
 				long days = ChronoUnit.DAYS.between(today, deadline);// 今日から提出期限まで何日あるか
 
 				System.out.println("GitのPersonal Access Tokenの有効期限まであと " + days + " 日です。");
+
 				return;
 			default:
-				System.out.println("エラー");
+				System.out.println("エラーが発生しましたメニューに戻ります。");
 			}
 		}
 	}
