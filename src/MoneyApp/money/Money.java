@@ -69,12 +69,10 @@ public class Money {
 
 	public void moneyIndication() {
 		System.out.println("========================" + "\n"
-				+ "項目" + getProductltem() + "\n"
-				+ "商品名" + getProduct() + "\n"
-				+ "値段" + getPrice() + "\n"
-				+ "購入年" + getYear() + "\n"
-				+ "購入月" + getMonth() + "\n"
-				+ "購入日" + getDay() + "\n"
+				+ "項目" + "：" + getProductltem() + "\n"
+				+ "商品名" + "：" + getProduct() + "\n"
+				+ "値段" + "：" + getPrice() + "円" + "\n"
+				+ "購入日" + "：" + getYear() + "/" + getMonth() + "/" + getDay() + "\n"
 				+ "========================");
 
 	}
