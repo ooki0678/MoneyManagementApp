@@ -14,8 +14,8 @@ import MoneyApp.money.Money;
 public class Main {
 	public static void main(String[] args) {
 		ArrayList<Money> moneylist = new ArrayList<>();
-		Function.Load(moneylist);
 		Function function = new Function(moneylist);
+		Function.Load(moneylist);
 
 		Scanner scan = new Scanner(System.in);
 		while (true) {

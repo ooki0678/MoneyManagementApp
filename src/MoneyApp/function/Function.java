@@ -11,12 +11,11 @@ import java.util.Scanner;
 import MoneyApp.money.Money;
 
 public class Function {
-	//Money型のArrayList
-	ArrayList<Money> moneylist = new ArrayList<>();
+	//moneylistを保持するフィールド
+	ArrayList<Money> moneylist;
 
-	//コンストラクター
+	// コンストラクタ
 	public Function(ArrayList<Money> moneylist) {
-		super();
 		this.moneylist = moneylist;
 	}
 
@@ -98,32 +97,32 @@ public class Function {
 		}
 
 		System.out.println("========================");
-		int nonber = 1;
+		int nonberList = 1;
 		for (Money money : moneylist) {
-			System.out.println(nonber + "：" + money.getProduct());
-			nonber++;
+			System.out.println(nonberList + "：" + money.getProduct());
+			nonberList++;
 		}
+		System.out.println("0：戻る");
 		System.out.println("========================");
 
 		System.out.print("選択：");
-		int select = scan.nextInt();
+		int selectList = scan.nextInt();
 		scan.nextLine();
-		if (select == 0) {
+		System.out.println();
+		if (selectList == 0) {
 			return;
 		}
-		System.out.println();
 
 		System.out.println("========================\n"
-				+ "詳細" + "\n"
-				+ "========================");
-		Money money = moneylist.get(select - 1);
+				+ "詳細");
+		Money money = moneylist.get(selectList - 1);
 		money.moneyIndication();
+		System.out.println();
 
 	}
 
 	//	追加　
 	public void Add(Scanner scan) {
-		System.out.println("========================");
 		System.out.print("項目：");
 		String Productltem = scan.next();
 		System.out.print("商品名：");
@@ -144,15 +143,116 @@ public class Function {
 
 		moneylist.add(new Money(Productltem, Product, Price, Year, Month, Day));
 
+		System.out.println("項目" + "：" + Productltem + "\n"
+				+ "商品名" + "：" + Product + "\n"
+				+ "値段" + "：" + Price + "円" + "\n"
+				+ "購入日" + "：" + Year + "/" + Month + "/" + Day + "\n"
+				+ "========================");
+
+		System.out.println("追加完了");
+		System.out.println();
+
 	}
 
 	//	検索
 	public void Search(Scanner scan) {
+		System.out.print("検索：");
+		String keyword = scan.next();
 
+		System.out.println("========================");
+		for (Money money : moneylist) {
+			int nunber = 1;
+			if (money.getProduct().equals(keyword)) {
+				System.out.println(nunber + "：" + money.getProduct());
+				nunber++;
+			} else if (money.getProductltem().equals(keyword)) {
+				System.out.println(nunber + "：" + money.getProductltem() + "/" + money.getProduct());
+				nunber++;
+			} else {
+				System.out.println("該当するものがありません。");
+				System.out.println();
+				return;
+			}
+		}
+		System.out.println("0：戻る");
+		System.out.println("========================");
+
+		System.out.print("選択：");
+		int selectSearch = scan.nextInt();
+		System.out.println();
+		if (selectSearch == 0) {
+			System.out.println("メニューに戻ります。");
+			System.out.println();
+			return;
+		}
+
+		System.out.println("========================\n"
+				+ "詳細");
+		Money money = moneylist.get(selectSearch - 1);
+		money.moneyIndication();
+		System.out.println();
 	}
 
 	//	編集
 	public void Edit(Scanner scan) {
+		if (moneylist.isEmpty()) {
+			System.out.println("該当するものがありません。");
+			return;
+		}
+
+		System.out.println("========================");
+		int nonberEdit = 1;
+		for (Money money : moneylist) {
+			System.out.println(nonberEdit + "：" + money.getProduct());
+			nonberEdit++;
+		}
+		System.out.println("0：戻る");
+		System.out.println("========================");
+
+		System.out.print("選択：");
+		int selectEdit = scan.nextInt();
+		System.out.println();
+		if (selectEdit == 0) {
+			return;
+		}
+
+		System.out.println("========================\n"
+				+ "詳細");
+		Money money = moneylist.get(selectEdit - 1);
+		money.moneyIndication();
+		System.out.println();
+
+		System.out.println("========================\n"
+				+ "編集方法" + "\n"
+				+ "========================");
+		System.out.println("1：全編集");
+		System.out.println("2：部分編集");
+		System.out.println("0：戻る");
+		System.out.println("========================");
+		System.out.print("選択：");
+		int Edit = scan.nextInt();
+		System.out.println();
+
+		while (true) {
+			switch (Edit) {
+			case 1:
+				System.out.println("========================\n"
+						+ "全編集" + "\n"
+						+ "========================");
+				return;
+			case 2:
+				System.out.println("========================\n"
+						+ "部分編集" + "\n"
+						+ "========================");
+				return;
+			case 0:
+				System.out.println("メニューに戻ります。");
+				return;
+			default:
+				break;
+			}
+
+		}
 
 	}
 
