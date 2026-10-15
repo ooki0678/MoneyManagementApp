@@ -25,35 +25,41 @@ public class Main {
 				int list = List.showList();
 				switch (list) {
 				case 1:
+					System.out.println();
 					System.out.println("========================" + "\n"
 							+ "   リスト" + "\n"
 							+ "========================");
 					function.List(scan);
 					break;
 				case 2:
+					System.out.println();
 					System.out.println("========================" + "\n"
 							+ "   追加" + "\n"
 							+ "========================");
 					function.Add(scan);
 					break;
 				case 3:
+					System.out.println();
 					System.out.println("========================" + "\n"
 							+ "   編集" + "\n"
 							+ "========================");
 					function.Edit(scan);
 					break;
 				case 4:
+					System.out.println();
 					System.out.println("========================" + "\n"
 							+ "   消去" + "\n"
 							+ "========================");
 					function.Delete(scan);
 					break;
 				case 0:
+					System.out.println();
 					System.out.println("メニューに戻ります。");
 					break;
 				}
 				break;
 			case 2:
+				System.out.println();
 				System.out.println("========================" + "\n"
 						+ "   検索" + "\n"
 						+ "========================");
@@ -63,6 +69,7 @@ public class Main {
 				int setting = Setting.showSetting();
 				switch (setting) {
 				case 1:
+					System.out.println();
 					System.out.println("========================" + "\n"
 							+ "   ログイン" + "\n"
 							+ "========================");
@@ -73,11 +80,13 @@ public class Main {
 					//					}
 					break;
 				case 2:
+					System.out.println();
 					System.out.println("========================" + "\n"
 							+ "   困ったら" + "\n"
 							+ "========================");
 					break;
 				case 0:
+					System.out.println();
 					System.out.println("メニューに戻ります。");
 					break;
 				}
@@ -95,6 +104,7 @@ public class Main {
 				System.out.println("GitのPersonal Access Tokenの有効期限まであと " + days + " 日です。");
 				return;
 			default:
+				System.out.println();
 				System.out.println("エラーが発生しましたメニューに戻ります。");
 			}
 		}

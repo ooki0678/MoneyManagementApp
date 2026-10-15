@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Setting {
 	public static int showSetting() {
 		Scanner scan = new Scanner(System.in);
+		System.out.println();
 		System.out.println("========================");
 		System.out.println("   設定");
 		System.out.println("========================");

@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Menu {
 	public static int showMain() {
 		Scanner scan = new Scanner(System.in);
+		System.out.println();
 		System.out.println("========================");
 		System.out.println("   お金管理アプリ");
 		System.out.println("========================");

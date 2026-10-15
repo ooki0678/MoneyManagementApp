@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class List {
 	public static int showList() {
 		Scanner scan = new Scanner(System.in);
+		System.out.println();
 		System.out.println("========================");
 		System.out.println("   一覧");
 		System.out.println("========================");

@@ -40,10 +40,11 @@ public class Function {
 			}
 
 			bw.close();
-
+			System.out.println();
 			System.out.println("保存完了");
 
 		} catch (IOException e) {
+			System.out.println();
 			System.out.println("保存に失敗しました");
 		}
 	}
@@ -85,6 +86,7 @@ public class Function {
 			System.out.println("読み込みました！");
 
 		} catch (IOException e) {
+			System.out.println();
 			System.out.println("読み込みに失敗しました。");
 		}
 	}
@@ -104,7 +106,6 @@ public class Function {
 		}
 		System.out.println("0：戻る");
 		System.out.println("========================");
-
 		System.out.print("選択：");
 		int selectList = scan.nextInt();
 		scan.nextLine();
@@ -112,9 +113,11 @@ public class Function {
 		if (selectList == 0) {
 			return;
 		}
+		System.out.println();
 
 		System.out.println("========================\n"
-				+ "詳細");
+				+ "   詳細\n"
+				+ "========================");
 		Money money = moneylist.get(selectList - 1);
 		money.moneyIndication();
 		System.out.println();
@@ -123,6 +126,7 @@ public class Function {
 
 	//	追加　
 	public void Add(Scanner scan) {
+		System.out.println("========================");
 		System.out.print("項目：");
 		String Productltem = scan.next();
 		System.out.print("商品名：");
@@ -140,15 +144,12 @@ public class Function {
 		int Day = scan.nextInt();
 		scan.nextLine();
 		System.out.println("========================");
-
 		moneylist.add(new Money(Productltem, Product, Price, Year, Month, Day));
-
 		System.out.println("項目" + "：" + Productltem + "\n"
 				+ "商品名" + "：" + Product + "\n"
 				+ "値段" + "：" + Price + "円" + "\n"
 				+ "購入日" + "：" + Year + "/" + Month + "/" + Day + "\n"
 				+ "========================");
-
 		System.out.println("追加完了");
 		System.out.println();
 
@@ -176,7 +177,6 @@ public class Function {
 		}
 		System.out.println("0：戻る");
 		System.out.println("========================");
-
 		System.out.print("選択：");
 		int selectSearch = scan.nextInt();
 		System.out.println();
@@ -185,6 +185,7 @@ public class Function {
 			System.out.println();
 			return;
 		}
+		System.out.println();
 
 		System.out.println("========================\n"
 				+ "詳細");
@@ -197,9 +198,11 @@ public class Function {
 	public void Edit(Scanner scan) {
 		if (moneylist.isEmpty()) {
 			System.out.println("該当するものがありません。");
+			System.out.println();
 			return;
 		}
 
+		System.out.println();
 		System.out.println("========================");
 		int nonberEdit = 1;
 		for (Money money : moneylist) {
@@ -208,43 +211,115 @@ public class Function {
 		}
 		System.out.println("0：戻る");
 		System.out.println("========================");
-
 		System.out.print("選択：");
 		int selectEdit = scan.nextInt();
 		System.out.println();
 		if (selectEdit == 0) {
 			return;
 		}
+		System.out.println();
 
 		System.out.println("========================\n"
-				+ "詳細");
+				+ "   詳細\n"
+				+ "========================");
+		System.out.println();
+
 		Money money = moneylist.get(selectEdit - 1);
 		money.moneyIndication();
 		System.out.println();
 
 		System.out.println("========================\n"
-				+ "編集方法" + "\n"
+				+ "   編集方法" + "\n"
 				+ "========================");
+		System.out.println();
+
+		System.out.println("========================");
 		System.out.println("1：全編集");
 		System.out.println("2：部分編集");
 		System.out.println("0：戻る");
 		System.out.println("========================");
 		System.out.print("選択：");
 		int Edit = scan.nextInt();
+		System.out.println("編集完了");
 		System.out.println();
 
-		while (true) {
-			switch (Edit) {
+		switch (Edit) {
+		case 1:
+			System.out.println("========================\n"
+					+ "   全編集\n"
+					+ "========================");
+			System.out.println("========================");
+			System.out.print("New項目：");
+			String EditProductltem = scan.next();
+			money.setProductltem(EditProductltem);
+			System.out.print("New商品名：");
+			String EditProduct = scan.next();
+			money.setProduct(EditProduct);
+			System.out.print("New値段：");
+			int EditPrice = scan.nextInt();
+			money.setPrice(EditPrice);
+			System.out.print("New購入年：");
+			int EditYear = scan.nextInt();
+			money.setYear(EditYear);
+			System.out.print("New購入月：");
+			int EditMonth = scan.nextInt();
+			money.setMonth(EditMonth);
+			System.out.print("New購入日：");
+			int EditDay = scan.nextInt();
+			money.setDay(EditDay);
+			System.out.println("========================");
+			System.out.println();
+
+			break;
+		case 2:
+			System.out.println("========================\n"
+					+ "部分編集\n"
+					+ "========================");
+			System.out.println("========================");
+			System.out.println("1：New項目");
+			System.out.println("2：New商品名");
+			System.out.println("3：New値段");
+			System.out.println("4：New購入年");
+			System.out.println("5：New購入月");
+			System.out.println("6：New購入日");
+			System.out.println("0：戻る");
+			System.out.println("========================");
+			System.out.print("選択：");
+			int Edit2 = scan.nextInt();
+			System.out.println();
+
+			switch (Edit2) {
 			case 1:
 				System.out.println("========================\n"
-						+ "全編集" + "\n"
+						+ "   New項目\n"
 						+ "========================");
-				return;
+
+				break;
 			case 2:
 				System.out.println("========================\n"
-						+ "部分編集" + "\n"
+						+ "   New商品名\n"
 						+ "========================");
-				return;
+				break;
+			case 3:
+				System.out.println("========================\n"
+						+ "   New値段\n"
+						+ "========================");
+				break;
+			case 4:
+				System.out.println("========================\n"
+						+ "   New購入年\n"
+						+ "========================");
+				break;
+			case 5:
+				System.out.println("========================\n"
+						+ "   New購入月\n"
+						+ "========================");
+				break;
+			case 6:
+				System.out.println("========================\n"
+						+ "   New購入日\n"
+						+ "========================");
+				break;
 			case 0:
 				System.out.println("メニューに戻ります。");
 				return;
@@ -252,6 +327,12 @@ public class Function {
 				break;
 			}
 
+			break;
+		case 0:
+			System.out.println("メニューに戻ります。");
+			return;
+		default:
+			break;
 		}
 
 	}
