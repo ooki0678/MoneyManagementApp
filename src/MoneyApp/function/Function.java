@@ -108,8 +108,8 @@ public class Function {
 		System.out.println("========================");
 		System.out.print("選択：");
 		int selectList = scan.nextInt();
-		scan.nextLine();
 		System.out.println();
+
 		if (selectList == 0) {
 			return;
 		}
@@ -129,20 +129,21 @@ public class Function {
 		System.out.println("========================");
 		System.out.print("項目：");
 		String Productltem = scan.next();
+
 		System.out.print("商品名：");
 		String Product = scan.next();
+
 		System.out.print("値段：");
 		int Price = scan.nextInt();
-		scan.nextLine();
+
 		System.out.print("購入年：");
 		int Year = scan.nextInt();
-		scan.nextLine();
+
 		System.out.print("購入月：");
 		int Month = scan.nextInt();
-		scan.nextLine();
+
 		System.out.print("購入日：");
 		int Day = scan.nextInt();
-		scan.nextLine();
 		System.out.println("========================");
 		moneylist.add(new Money(Productltem, Product, Price, Year, Month, Day));
 		System.out.println("項目" + "：" + Productltem + "\n"
@@ -160,38 +161,48 @@ public class Function {
 		System.out.print("検索：");
 		String keyword = scan.next();
 
-		System.out.println("========================");
+		// ① 検索結果を集める
+		ArrayList<Money> results = new ArrayList<>();
+
 		for (Money money : moneylist) {
-			int nunber = 1;
 			if (money.getProduct().equals(keyword)) {
-				System.out.println(nunber + "：" + money.getProduct());
-				nunber++;
-			} else if (money.getProductltem().equals(keyword)) {
-				System.out.println(nunber + "：" + money.getProductltem() + "/" + money.getProduct());
-				nunber++;
-			} else {
-				System.out.println("該当するものがありません。");
-				System.out.println();
-				return;
+				results.add(money);
 			}
 		}
+
+		// ② 検索結果があるか確認
+		if (results.isEmpty()) {
+			System.out.println("該当するものがありません。");
+			return;
+		}
+
+		// ③ 検索結果を表示
+		System.out.println("========================");
+
+		for (int i = 0; i < results.size(); i++) {
+			System.out.println((i + 1) + "："
+					+ results.get(i).getProduct());
+		}
+
 		System.out.println("0：戻る");
 		System.out.println("========================");
 		System.out.print("選択：");
+
 		int selectSearch = scan.nextInt();
-		System.out.println();
+
 		if (selectSearch == 0) {
 			System.out.println("メニューに戻ります。");
-			System.out.println();
 			return;
 		}
-		System.out.println();
 
-		System.out.println("========================\n"
-				+ "詳細");
-		Money money = moneylist.get(selectSearch - 1);
-		money.moneyIndication();
-		System.out.println();
+		// ④ 選択した商品の詳細を表示
+		if (selectSearch < 1 || selectSearch > results.size()) {
+			System.out.println("無効な番号です。");
+			return;
+		}
+
+		Money selectedMoney = results.get(selectSearch - 1);
+		selectedMoney.moneyIndication();
 	}
 
 	//	編集
@@ -222,7 +233,6 @@ public class Function {
 		System.out.println("========================\n"
 				+ "   詳細\n"
 				+ "========================");
-		System.out.println();
 
 		Money money = moneylist.get(selectEdit - 1);
 		money.moneyIndication();
@@ -293,32 +303,44 @@ public class Function {
 				System.out.println("========================\n"
 						+ "   New項目\n"
 						+ "========================");
+				String Edit2Productltem = scan.next();
+				money.setProductltem(Edit2Productltem);
 
 				break;
 			case 2:
 				System.out.println("========================\n"
 						+ "   New商品名\n"
 						+ "========================");
+				String Edit2Product = scan.next();
+				money.setProduct(Edit2Product);
 				break;
 			case 3:
 				System.out.println("========================\n"
 						+ "   New値段\n"
 						+ "========================");
+				int Edit2Price = scan.nextInt();
+				money.setPrice(Edit2Price);
 				break;
 			case 4:
 				System.out.println("========================\n"
 						+ "   New購入年\n"
 						+ "========================");
+				int Edit2Year = scan.nextInt();
+				money.setYear(Edit2Year);
 				break;
 			case 5:
 				System.out.println("========================\n"
 						+ "   New購入月\n"
 						+ "========================");
+				int Edit2Month = scan.nextInt();
+				money.setMonth(Edit2Month);
 				break;
 			case 6:
 				System.out.println("========================\n"
 						+ "   New購入日\n"
 						+ "========================");
+				int Edit2Day = scan.nextInt();
+				money.setDay(Edit2Day);
 				break;
 			case 0:
 				System.out.println("メニューに戻ります。");
@@ -339,6 +361,48 @@ public class Function {
 
 	//	消去
 	public void Delete(Scanner scan) {
+		if (moneylist.isEmpty()) {
+			System.out.println("該当するものがありません。");
+			return;
+		}
 
+		System.out.println("========================");
+		int nonberDelete = 1;
+		for (Money money : moneylist) {
+			System.out.println(nonberDelete + "：" + money.getProduct());
+			nonberDelete++;
+		}
+		System.out.println("0：戻る");
+		System.out.println("========================");
+		System.out.print("選択：");
+		int selectDelete = scan.nextInt();
+		scan.nextLine();
+		System.out.println();
+		if (selectDelete == 0) {
+			return;
+		}
+		System.out.println();
+
+		Money money = moneylist.get(selectDelete - 1);
+		money.moneyIndication();
+		System.out.println();
+
+		System.out.println(money.getProduct() + "をほんとに消していいですか？");
+		System.out.println("========================");
+		System.out.println("1：はい");
+		System.out.println("2：いいえ");
+		System.out.println("========================");
+		System.out.print("選択：");
+		int selectDelete1 = scan.nextInt();
+
+		if (selectDelete1 == 1) {
+			moneylist.remove(money);
+			System.out.println(money.getProduct() + "消去しました！。");
+		} else {
+			System.out.println(money.getProduct() + "の消去をやめて戻ります");
+			return;
+		}
 	}
+
+	//ログイン/ログアウト/会委員登録
 }
